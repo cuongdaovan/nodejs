@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     position: DataTypes.STRING
   }, {});
   Profile.associate = function(models) {
-    // associations can be defined here
+    Profile.hasOne(models.User, {
+      foreignKey: 'id',
+    });
   };
   return Profile;
 };

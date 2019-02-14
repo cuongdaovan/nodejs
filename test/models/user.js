@@ -5,10 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasOne(models.Profile, {
-      foreignKey: 'userId',
-      as: 'profile',
-    });
+    // User.hasOne(models.Profile, {
+    //   foreignKey: 'userId',
+    // });
   };
   return User;
 };

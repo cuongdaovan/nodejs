@@ -5,21 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var db = require('./schema');
-var Sequelize = require('sequelize');
-
-const User = db.define('user', { name: Sequelize.STRING })
-const Task = db.define('task', { name: Sequelize.STRING })
-const Tool = db.define('tool', { name: Sequelize.STRING })
-
-Task.belongsTo(User)
-User.hasMany(Task)
-User.hasMany(Tool, { as: 'Instruments' })
-
-db.sync().then(() => {
-  // this is where we continue ...
-})
+var usersRouter = require('./routes/user');
+// var db = require('./schema');
 
 var app = express();
 
@@ -34,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
